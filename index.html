@@ -28,6 +28,7 @@
   --on-bar:#0F1715; --edu:#3FB3A1; --hlt:#E9806B; --fin:#8E9CF0; --npo:#D07BBE; color-scheme:dark}
 
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0}
 .wrap{max-width:1080px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
 h1,h2,h3,h4{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
@@ -448,9 +449,13 @@ footer .copy{color:var(--muted);font-size:13px;justify-self:end;align-self:cente
         <div class="f"><label for="cf-message">Message</label><textarea id="cf-message" name="message"></textarea></div>
         <button type="submit" class="submit">Submit</button>
       </div>
+      <input type="checkbox" name="botcheck" id="cf-bot" tabindex="-1" autocomplete="off" hidden>
       <p class="err" id="cf-err" hidden>Enter a valid email address so Esther can reply.</p>
+      <div class="sent" id="cf-done" hidden role="status">
+        <p><b>Message sent.</b> Thank you. Esther will reply to <span id="cf-done-email"></span>.</p>
+      </div>
       <div class="sent" id="cf-sent" hidden>
-        <p>Your message is ready. Open it in your email app to send it to Esther, or copy it and send it to thetolafame@gmail.com.</p>
+        <p id="cf-fallback-note">Your message is ready. Open it in your email app to send it to Esther, or copy it and send it to thetolafame@gmail.com.</p>
         <div class="row"><a class="btn small primary" id="cf-mail" href="#">Open in email app</a><button type="button" class="btn small" id="cf-copy">Copy message</button></div>
       </div>
     </form>
@@ -466,6 +471,9 @@ footer .copy{color:var(--muted);font-size:13px;justify-self:end;align-self:cente
 
 <script>
 (function(){
+  /* Contact form delivery: paste your Web3Forms access key between the quotes.
+     Get one free at https://web3forms.com (enter thetolafame@gmail.com; the key arrives by email). */
+  var WEB3FORMS_KEY = "";
   var pages=['home','about','projects','contact'];
   function show(){
     var h=(location.hash||'#home').slice(1); if(pages.indexOf(h)<0)h='home';
@@ -486,8 +494,24 @@ footer .copy{color:var(--muted);font-size:13px;justify-self:end;align-self:cente
     var name=(v('cf-first')+' '+v('cf-last')).trim();
     var subj=v('cf-subject')||('Portfolio enquiry'+(name?' from '+name:''));
     body=v('cf-message')+'\n\n'+(name||'')+'\n'+em;
-    document.getElementById('cf-mail').href='mailto:thetolafame@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
-    document.getElementById('cf-sent').hidden=false;
+    var done=document.getElementById('cf-done'), fb=document.getElementById('cf-sent'), btn=form.querySelector('.submit');
+    done.hidden=true; fb.hidden=true;
+    function fallback(){
+      document.getElementById('cf-mail').href='mailto:thetolafame@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+      fb.hidden=false;
+    }
+    if(!WEB3FORMS_KEY){fallback();return;}
+    if(document.getElementById('cf-bot').checked)return;
+    btn.disabled=true; btn.textContent='Sending';
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+      body:JSON.stringify({access_key:WEB3FORMS_KEY,subject:subj,from_name:name||em,name:name,email:em,replyto:em,message:v('cf-message')})})
+      .then(function(r){return r.json();})
+      .then(function(j){
+        if(j&&j.success){document.getElementById('cf-done-email').textContent=em;done.hidden=false;form.reset();}
+        else{document.getElementById('cf-fallback-note').textContent='The message could not be sent from this page. Open it in your email app instead, or copy it and send it to thetolafame@gmail.com.';fallback();}
+      })
+      .catch(function(){document.getElementById('cf-fallback-note').textContent='The message could not be sent from this page. Open it in your email app instead, or copy it and send it to thetolafame@gmail.com.';fallback();})
+      .then(function(){btn.disabled=false;btn.textContent='Submit';});
   });
   document.getElementById('cf-copy').addEventListener('click',function(){
     var b=this; try{navigator.clipboard.writeText(body).then(function(){b.textContent='Copied';},function(){b.textContent='Copy failed';});}catch(e){b.textContent='Copy failed';}
