@@ -7,13 +7,13 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Allura&display=swap">
 <style>
 /* Layout: four pages (Home, About, Projects, Contact) like a classic PM portfolio site. Home carries a to-scale Gantt of the projects; each project reads like a project file with labelled fields. */
 :root{
   --bg:#F2F4F1; --surface:#FFFFFF; --ink:#13221E; --muted:#56635E; --line:#D5DBD6;
   --accent:#C9861A; --accent-ink:#8A5A0C;
-  --on-bar:#FFFFFF; --edu:#1F7A6D; --hlt:#C4553F; --fin:#3E4FA3; --npo:#8A3F7A;
+  --band:#8A5A2B; --on-band:#FBF5EC; --on-bar:#FFFFFF; --edu:#1F7A6D; --hlt:#C4553F; --fin:#3E4FA3; --npo:#8A3F7A;
   --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
   --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -21,11 +21,11 @@
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0F1715; --surface:#17211E; --ink:#E7ECE8; --muted:#9AA8A2; --line:#2A3632;
   --accent:#E3A43A; --accent-ink:#F0BE68;
-  --on-bar:#0F1715; --edu:#3FB3A1; --hlt:#E9806B; --fin:#8E9CF0; --npo:#D07BBE; color-scheme:dark}}
+  --band:#5E3D1E; --on-band:#F6ECDD; --on-bar:#0F1715; --edu:#3FB3A1; --hlt:#E9806B; --fin:#8E9CF0; --npo:#D07BBE; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0F1715; --surface:#17211E; --ink:#E7ECE8; --muted:#9AA8A2; --line:#2A3632;
   --accent:#E3A43A; --accent-ink:#F0BE68;
-  --on-bar:#0F1715; --edu:#3FB3A1; --hlt:#E9806B; --fin:#8E9CF0; --npo:#D07BBE; color-scheme:dark}
+  --band:#5E3D1E; --on-band:#F6ECDD; --on-bar:#0F1715; --edu:#3FB3A1; --hlt:#E9806B; --fin:#8E9CF0; --npo:#D07BBE; color-scheme:dark}
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -141,14 +141,29 @@ nav ul a[aria-current="page"]{background:var(--ink);color:var(--bg)}
 .social{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 
 /* contact page v2 */
-.contact2{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr);gap:48px;align-items:start;padding-block:24px 16px}
+.contact2{display:grid;grid-template-columns:minmax(0,1fr);gap:48px;align-items:center;justify-items:center;padding-block:24px 16px}
 .contact2 > *{min-width:0}
+.c-card{background:var(--band);color:var(--on-band);border-radius:14px;padding:32px 22px 26px;display:grid;gap:22px;justify-items:center;text-align:center;max-width:440px;width:100%;justify-self:center}
+.c-card .brand{font-size:12px;letter-spacing:.22em;text-transform:uppercase}
+.c-card .script{font-family:"Allura","Segoe Script",cursive;font-size:64px;line-height:.8;font-weight:400}
+.c-card .now{font-family:var(--body);font-size:clamp(34px,5vw,44px);font-weight:500;letter-spacing:.02em;line-height:1;margin-top:-4px}
+.c-inner{background:var(--surface);border-radius:14px;padding:22px 18px;display:grid;gap:12px;width:100%}
+.pill{display:flex;align-items:center;gap:12px;border:1.5px solid var(--band);border-radius:999px;padding:7px 16px 7px 8px;color:var(--ink);text-decoration:none;font-size:15px;text-align:left;min-width:0}
+a.pill:hover{background:var(--bg)}
+.pill .ic{flex:none;width:30px;height:30px;border-radius:50%;background:var(--band);color:var(--on-band);display:grid;place-items:center}
+.pill .ic svg{width:15px;height:15px;fill:currentColor}
+.pill span:last-child{overflow-wrap:anywhere}
+.c-card .handle{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--on-band);text-decoration:none}
+.c-card .handle:hover{text-decoration:underline}
 .c-left{display:grid;gap:14px}
 .c-left h1{font-size:clamp(36px,5vw,52px);font-weight:800;letter-spacing:-.02em}
 .c-left p{color:var(--muted);max-width:38ch}
 .c-left .em{display:grid;gap:2px;margin-top:18px}
 .c-left .em b{font-size:15px}
 .c-left .em span{font-family:var(--mono);font-size:15px;user-select:all;word-break:break-all}
+.cf-h{grid-column:1 / -1;display:grid;gap:6px}
+.cf-h h2{font-size:clamp(24px,3vw,30px);font-weight:700}
+.cf-h p{color:var(--muted);font-size:15px}
 form.cf{display:grid;grid-template-columns:1fr 1fr;gap:18px 16px}
 .cf .f{display:grid;gap:6px;min-width:0}
 .cf label{font-size:13px}
@@ -191,7 +206,7 @@ footer .copy{color:var(--muted);font-size:13px;justify-self:end;align-self:cente
 <body>
 
 <nav><div class="wrap">
-  <a class="name" href="#home">Esther Adeagbo</a>
+  <a class="name" href="#home">Esther Adetola Adeagbo</a>
   <ul>
     <li><a href="#home" data-page="home">Home</a></li>
     <li><a href="#about" data-page="about">About Esther</a></li>
@@ -434,46 +449,29 @@ footer .copy{color:var(--muted);font-size:13px;justify-self:end;align-self:cente
 <!-- CONTACT -->
 <main class="wrap page" id="page-contact" data-view="contact" hidden>
   <div class="contact2">
-    <div class="c-left">
-      <h1>Contact</h1>
-      <p>Looking forward to hearing from you and delivering great projects together.</p>
-      <div class="em"><b>Email:</b><span id="email">thetolafame@gmail.com</span></div>
-      <div class="row"><button type="button" class="btn small" data-copy="email">Copy email</button></div>
+    <div class="c-card">
+      <span class="brand">Esther Adetola Adeagbo</span>
+      <h1><span class="script">Contact</span><br><span class="now">ME NOW</span></h1>
+      <div class="c-inner">
+        <a class="pill" href="tel:+2348163197721"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></span><span>+234 816 319 7721</span></a>
+        <a class="pill" href="mailto:thetolafame@gmail.com"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4 7v1.9l8 5 8-5V7z"/></svg></span><span id="email">thetolafame@gmail.com</span></a>
+        <a class="pill" href="https://www.linkedin.com/in/EAAdeagbo" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.03-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96V21H9z"/></svg></span><span>linkedin.com/in/EAAdeagbo</span></a>
+        <a class="pill" href="https://x.com/thetolafame" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.77zm-1.08 16.2h1.7L7.4 4.73H5.58z"/></svg></span><span>x.com/thetolafame</span></a>
+      </div>
+      <a class="handle" href="https://x.com/thetolafame" target="_blank" rel="noopener">@thetolafame</a>
     </div>
-    <form class="cf" id="cf" novalidate>
-      <div class="f"><label for="cf-first">First Name</label><input id="cf-first" name="first" autocomplete="given-name"></div>
-      <div class="f"><label for="cf-last">Last Name</label><input id="cf-last" name="last" autocomplete="family-name"></div>
-      <div class="f"><label for="cf-email">Email *</label><input id="cf-email" name="email" type="email" required autocomplete="email"></div>
-      <div class="f"><label for="cf-subject">Subject</label><input id="cf-subject" name="subject"></div>
-      <div class="msg-row">
-        <div class="f"><label for="cf-message">Message</label><textarea id="cf-message" name="message"></textarea></div>
-        <button type="submit" class="submit">Submit</button>
-      </div>
-      <input type="checkbox" name="botcheck" id="cf-bot" tabindex="-1" autocomplete="off" hidden>
-      <p class="err" id="cf-err" hidden>Enter a valid email address so Esther can reply.</p>
-      <div class="sent" id="cf-done" hidden role="status">
-        <p><b>Message sent.</b> Thank you. Esther will reply to <span id="cf-done-email"></span>.</p>
-      </div>
-      <div class="sent" id="cf-sent" hidden>
-        <p id="cf-fallback-note">Your message is ready. Open it in your email app to send it to Esther, or copy it and send it to thetolafame@gmail.com.</p>
-        <div class="row"><a class="btn small primary" id="cf-mail" href="#">Open in email app</a><button type="button" class="btn small" id="cf-copy">Copy message</button></div>
-      </div>
-    </form>
   </div>
 </main>
 
 <footer><div class="wrap">
   <div><b>Phone</b><span id="phone">+2348163197721</span></div>
   <div><b>Email</b><span>thetolafame@gmail.com</span></div>
-  <div><b>Follow Me</b><div class="icons"><a href="https://www.linkedin.com/in/EAAdeagbo" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.03-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96V21H9z"/></svg></a></div></div>
-  <div class="copy">© 2026 By Esther Adeagbo</div>
+  <div><b>Follow Me</b><div class="icons"><a href="https://www.linkedin.com/in/EAAdeagbo" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.03-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96V21H9z"/></svg></a><a href="https://x.com/thetolafame" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.77zm-1.08 16.2h1.7L7.4 4.73H5.58z"/></svg></a></div></div>
+  <div class="copy">© 2026 By Esther Adetola Adeagbo</div>
 </div></footer>
 
 <script>
 (function(){
-  /* Contact form delivery: paste your Web3Forms access key between the quotes.
-     Get one free at https://web3forms.com (enter thetolafame@gmail.com; the key arrives by email). */
-  var WEB3FORMS_KEY = "";
   var pages=['home','about','projects','contact'];
   function show(){
     var h=(location.hash||'#home').slice(1); if(pages.indexOf(h)<0)h='home';
@@ -484,38 +482,6 @@ footer .copy{color:var(--muted);font-size:13px;justify-self:end;align-self:cente
     window.scrollTo(0,0);
   }
   window.addEventListener('hashchange',show); show();
-  var form=document.getElementById('cf'), body='';
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var v=function(id){return document.getElementById(id).value.trim();};
-    var em=v('cf-email'), ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);
-    document.getElementById('cf-err').hidden=ok;
-    if(!ok){document.getElementById('cf-email').focus();return;}
-    var name=(v('cf-first')+' '+v('cf-last')).trim();
-    var subj=v('cf-subject')||('Portfolio enquiry'+(name?' from '+name:''));
-    body=v('cf-message')+'\n\n'+(name||'')+'\n'+em;
-    var done=document.getElementById('cf-done'), fb=document.getElementById('cf-sent'), btn=form.querySelector('.submit');
-    done.hidden=true; fb.hidden=true;
-    function fallback(){
-      document.getElementById('cf-mail').href='mailto:thetolafame@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
-      fb.hidden=false;
-    }
-    if(!WEB3FORMS_KEY){fallback();return;}
-    if(document.getElementById('cf-bot').checked)return;
-    btn.disabled=true; btn.textContent='Sending';
-    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
-      body:JSON.stringify({access_key:WEB3FORMS_KEY,subject:subj,from_name:name||em,name:name,email:em,replyto:em,message:v('cf-message')})})
-      .then(function(r){return r.json();})
-      .then(function(j){
-        if(j&&j.success){document.getElementById('cf-done-email').textContent=em;done.hidden=false;form.reset();}
-        else{document.getElementById('cf-fallback-note').textContent='The message could not be sent from this page. Open it in your email app instead, or copy it and send it to thetolafame@gmail.com.';fallback();}
-      })
-      .catch(function(){document.getElementById('cf-fallback-note').textContent='The message could not be sent from this page. Open it in your email app instead, or copy it and send it to thetolafame@gmail.com.';fallback();})
-      .then(function(){btn.disabled=false;btn.textContent='Submit';});
-  });
-  document.getElementById('cf-copy').addEventListener('click',function(){
-    var b=this; try{navigator.clipboard.writeText(body).then(function(){b.textContent='Copied';},function(){b.textContent='Copy failed';});}catch(e){b.textContent='Copy failed';}
-  });
   document.querySelectorAll('[data-copy]').forEach(function(b){
     b.addEventListener('click',function(){
       var el=document.getElementById(b.dataset.copy), t=el.textContent, orig=b.textContent;
