@@ -214,7 +214,7 @@ form.cf{display:grid;grid-template-columns:1fr 1fr;gap:18px 16px}
 .sent p{font-size:14px}
 
 footer{border-top:1px solid var(--line);font-size:14px;margin-top:24px}
-footer .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;padding-block:28px;align-items:start}
+footer .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding-block:28px;align-items:start}
 footer b{display:block;font-weight:600;margin-bottom:4px}
 footer span,footer a.plain{color:var(--muted);word-break:break-all}
 footer .copy{color:var(--muted);font-size:13px;justify-self:end;align-self:center}
@@ -298,7 +298,7 @@ footer .copy{color:var(--muted);font-size:13px;justify-self:end;align-self:cente
 /* contact v3 */
 .contact3{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px;align-items:start}
 .c-info{display:grid;gap:26px}
-.c-block{display:grid;gap:8px;padding-top:18px;border-top:1px solid var(--line)}
+.c-block{display:grid;gap:8px;align-content:start;padding-top:18px;border-top:1px solid var(--line)}
 .plain-link{color:var(--ink);font-weight:600;text-decoration:none;font-size:16px}
 .plain-link:hover{color:var(--accent-ink);text-decoration:underline}
 .steps{margin:0;padding-left:20px;display:grid;gap:6px}
@@ -330,6 +330,20 @@ footer .copy{color:var(--muted);font-size:13px;justify-self:end;align-self:cente
 .about-head{display:flex;gap:28px;align-items:center}
 .about-head-text{display:grid;gap:10px}
 @media (max-width:620px){.about-head{flex-direction:column;align-items:start}.portrait.lg{width:160px;height:200px;font-size:40px}}
+
+/* contact v4 */
+.c-hero{display:flex;gap:24px;align-items:center}
+.c-hero .portrait.md{width:120px;height:120px}
+.c-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.c-tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:grid;gap:6px;align-content:start;color:var(--ink);text-decoration:none;min-width:0}
+a.c-tile:hover{border-color:var(--band)}
+.c-tile.main{grid-column:1 / -1;gap:10px}
+.c-tile b{font-size:16px;overflow-wrap:anywhere}
+.c-tile .ic{width:36px;height:36px;border-radius:50%;background:var(--band);color:var(--on-band);display:grid;place-items:center;margin-bottom:4px}
+.c-tile .ic svg{width:17px;height:17px;fill:currentColor}
+.c-bottom{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media (max-width:860px){.c-tiles{grid-template-columns:1fr}.c-bottom{grid-template-columns:1fr}}
+@media (max-width:520px){.c-hero{flex-direction:column;align-items:start}.c-hero .portrait.md{width:96px;height:96px}}
 </style>
 </head>
 <body>
@@ -688,53 +702,53 @@ footer .copy{color:var(--muted);font-size:13px;justify-self:end;align-self:cente
 
 <!-- CONTACT -->
 <main class="wrap page" id="page-contact" data-view="contact" hidden>
-  <div class="contact3">
-    <div class="c-info">
-      <div class="page-head">
-        <span class="label">Contact</span>
-        <h1>Let's talk about your next project.</h1>
-        <p class="lede">Whether you need a project manager or a project coordinator, tell me what you're working on.</p>
-      </div>
-      <div class="c-block">
-        <span class="sb-h">Email</span>
-        <span class="big-line" id="email2">thetolafame@gmail.com</span>
-        <div class="row"><a class="btn primary small" href="mailto:thetolafame@gmail.com">Email me</a><button class="btn small" type="button" data-copy="email2">Copy email address</button></div>
-      </div>
-      <div class="c-block">
-        <span class="sb-h">Phone</span>
-        <a class="plain-link" href="tel:+2348163197721">+234 816 319 7721</a>
-      </div>
-      <div class="c-block">
-        <span class="sb-h">Location</span>
-        <span class="plain-link">Lagos, Nigeria. Open to remote opportunities.</span>
-      </div>
-      <div class="c-block">
-        <span class="sb-h">Elsewhere</span>
-        <div class="row"><a class="plain-link" href="https://www.linkedin.com/in/EAAdeagbo" target="_blank" rel="noopener">LinkedIn ↗</a><a class="plain-link" href="https://x.com/thetolafame" target="_blank" rel="noopener">X ↗</a><a class="plain-link" href="#about">Résumé →</a></div>
-      </div>
-      <div class="c-block">
-        <span class="sb-h">Helpful to include</span>
-        <ol class="steps"><li>What the project is and the problem it solves</li><li>The result you want and how you will measure it</li><li>Your timeline and team size</li></ol>
-      </div>
-      <a class="next-stop" href="#home"><span>Next stop</span>Back to Home →</a>
+  <div class="c-hero">
+    <div class="portrait md has-photo" data-photo role="img" aria-label="Photo of Esther Adetola Adeagbo"><span>EA</span></div>
+    <div class="page-head">
+      <span class="label">Contact</span>
+      <h1>Let's talk about your next project.</h1>
+      <p class="lede">Whether you need a project manager or a project coordinator, tell me what you're working on. Email is the quickest way to reach me.</p>
     </div>
-    <div class="c-card">
-      <div class="portrait md has-photo" data-photo role="img" aria-label="Photo of Esther Adetola Adeagbo"><span>EA</span></div>
-      <span class="brand">Esther Adetola Adeagbo</span>
-      <h1><span class="script">Contact</span><br><span class="now">ME NOW</span></h1>
-      <div class="c-inner">
-        <a class="pill" href="tel:+2348163197721"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></span><span>+234 816 319 7721</span></a>
-        <a class="pill" href="mailto:thetolafame@gmail.com"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4 7v1.9l8 5 8-5V7z"/></svg></span><span id="email">thetolafame@gmail.com</span></a>
-        <a class="pill" href="https://www.linkedin.com/in/EAAdeagbo" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.03-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96V21H9z"/></svg></span><span>linkedin.com/in/EAAdeagbo</span></a>
-        <a class="pill" href="https://x.com/thetolafame" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.77zm-1.08 16.2h1.7L7.4 4.73H5.58z"/></svg></span><span>x.com/thetolafame</span></a>
-      </div>
-      <a class="handle" href="https://x.com/thetolafame" target="_blank" rel="noopener">@thetolafame</a>
+  </div>
+
+  <div class="c-tiles">
+    <div class="c-tile main">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4 7v1.9l8 5 8-5V7z"/></svg></span>
+      <span class="sb-h">Email</span>
+      <span class="big-line" id="email2">thetolafame@gmail.com</span>
+      <div class="row"><a class="btn primary small" href="mailto:thetolafame@gmail.com">Email me</a><button class="btn small" type="button" data-copy="email2">Copy email address</button></div>
+    </div>
+    <a class="c-tile" href="https://www.linkedin.com/in/EAAdeagbo" target="_blank" rel="noopener">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.03-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96V21H9z"/></svg></span>
+      <span class="sb-h">LinkedIn</span>
+      <b>linkedin.com/in/EAAdeagbo ↗</b>
+    </a>
+    <a class="c-tile" href="https://x.com/thetolafame" target="_blank" rel="noopener">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.77zm-1.08 16.2h1.7L7.4 4.73H5.58z"/></svg></span>
+      <span class="sb-h">X</span>
+      <b>@thetolafame ↗</b>
+    </a>
+    <div class="c-tile">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span>
+      <span class="sb-h">Location</span>
+      <b>Lagos, Nigeria</b>
+      <span class="note">Open to remote opportunities</span>
+    </div>
+  </div>
+
+  <div class="c-bottom">
+    <div class="c-block">
+      <span class="sb-h">Helpful to include</span>
+      <ol class="steps"><li>What the project is and the problem it solves</li><li>The result you want and how you will measure it</li><li>Your timeline and team size</li></ol>
+    </div>
+    <div class="c-block">
+      <span class="sb-h">More about me</span>
+      <div class="row"><a class="plain-link" href="#about">Résumé →</a><a class="plain-link" href="#projects">Projects →</a><a class="plain-link" href="#home">Home →</a></div>
     </div>
   </div>
 </main>
 
 <footer><div class="wrap">
-  <div><b>Phone</b><span id="phone">+2348163197721</span></div>
   <div><b>Email</b><span>thetolafame@gmail.com</span></div>
   <div><b>Follow Me</b><div class="icons"><a href="https://www.linkedin.com/in/EAAdeagbo" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.03-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96V21H9z"/></svg></a><a href="https://x.com/thetolafame" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.77zm-1.08 16.2h1.7L7.4 4.73H5.58z"/></svg></a></div></div>
   <div class="copy">© 2026 By Esther Adetola Adeagbo</div>
